@@ -17,7 +17,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       randomNumber: "",
-      movesCount: 5
+      movesCount: 5,
+      win: false
     };
   }
 
@@ -44,6 +45,7 @@ export default class App extends React.Component {
     ) {
       itemArray[itemNumber] = "lucky";
       this.setState({
+        win: true,
         movesCount: this.state.movesCount - 1
       });
     } else if (itemArray[itemNumber] === "empty") {
@@ -78,7 +80,8 @@ export default class App extends React.Component {
     this.setState(
       {
         randomNumber: this.generateRandomNumber(),
-        movesCount: 5
+        movesCount: 5,
+        win: false
       },
       () => {
         itemArray.fill("empty");
@@ -90,8 +93,19 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          {this.state.movesCount > 0 ? (
+        <View
+          style={
+            this.state.win
+              ? styles.topBarWin
+              : this.state.movesCount > 0
+              ? styles.topBar
+              : styles.topBarLose
+          }>
+          {this.state.win ? (
+            <Text style={styles.topBarText}>
+              You have won the Game with {this.state.movesCount} moves left!!
+            </Text>
+          ) : this.state.movesCount > 0 ? (
             <Text style={styles.topBarText}>
               Moves Left - {this.state.movesCount}/5
             </Text>
@@ -101,13 +115,14 @@ export default class App extends React.Component {
             </Text>
           )}
         </View>
-        {/* <Text>App.js to start working on your app!</Text> */}
         <View style={styles.grid}>
           <View style={styles.itemRow}>
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(0) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(0)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(0)}
@@ -118,7 +133,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(1) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(1)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(1)}
@@ -129,7 +146,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(2) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(2)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(2)}
@@ -140,7 +159,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(3) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(3)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(3)}
@@ -151,7 +172,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(4) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(4)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(4)}
@@ -165,7 +188,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(5) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(5)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(5)}
@@ -176,7 +201,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(6) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(6)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(6)}
@@ -187,7 +214,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(7) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(7)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(7)}
@@ -198,7 +227,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(8) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(8)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(8)}
@@ -209,7 +240,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(9) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(9)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(9)}
@@ -223,7 +256,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(10) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(10)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(10)}
@@ -234,7 +269,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(11) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(11)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(11)}
@@ -245,7 +282,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(12) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(12)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(12)}
@@ -256,7 +295,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(13) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(13)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(13)}
@@ -267,7 +308,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(14) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(14)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(14)}
@@ -281,7 +324,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(15) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(15)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(15)}
@@ -292,7 +337,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(16) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(16)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(16)}
@@ -303,7 +350,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(17) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(17)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(17)}
@@ -314,7 +363,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(18) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(18)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(18)}
@@ -325,7 +376,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(19) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(19)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(19)}
@@ -339,7 +392,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(20) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(20)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(20)}
@@ -350,7 +405,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(21) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(21)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(21)}
@@ -361,7 +418,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(22) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(22)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(22)}
@@ -372,7 +431,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(23) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(23)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(23)}
@@ -383,7 +444,9 @@ export default class App extends React.Component {
             <TouchableOpacity
               style={styles.item}
               onPress={() => {
-                this.state.movesCount > 0 ? this.sractchItem(24) : null;
+                this.state.movesCount > 0 && !this.state.win
+                  ? this.sractchItem(24)
+                  : null;
               }}>
               <FontAwesome
                 name={this.scratchItemIcon(24)}
@@ -394,7 +457,7 @@ export default class App extends React.Component {
           </View>
         </View>
         <Button
-          full
+          block
           success
           style={styles.button}
           onPress={() => {
@@ -403,7 +466,7 @@ export default class App extends React.Component {
           <Text style={styles.buttonText}>Reveal All</Text>
         </Button>
         <Button
-          full
+          block
           primary
           style={styles.button}
           onPress={() => {
@@ -430,8 +493,23 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     marginVertical: 20
   },
+  topBarWin: {
+    backgroundColor: "limegreen",
+    height: 50,
+    justifyContent: "center",
+    width: Dimensions.get("window").width,
+    marginVertical: 20
+  },
+  topBarLose: {
+    backgroundColor: "red",
+    height: 50,
+    justifyContent: "center",
+    width: Dimensions.get("window").width,
+    marginVertical: 20
+  },
   topBarText: {
     color: "white",
+    fontWeight: "bold",
     textAlign: "center"
   },
   grid: {},
